@@ -12,6 +12,8 @@ public interface ProductServiceApi {
 
     List<ProductDto> getAllProducts();
 
+    ResponseEntity<ProductDto> getProduct(UUID productDto);
+
     ResponseEntity<ProductDto> addNewProduct(ProductDto productDto);
 
     ResponseEntity<ProductDto> updateProduct(ProductDto productDto);

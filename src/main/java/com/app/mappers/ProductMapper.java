@@ -26,4 +26,8 @@ public class ProductMapper {
     public ProductEntity mapDtoToProduct(ProductDto productDto) {
         return modelMapper.map(productDto, ProductEntity.class);
     }
+
+    public ProductDto mapProductEntityToDto(ProductEntity productEntity) {
+        return modelMapper.map(productEntity, ProductDto.class);
+    }
 }

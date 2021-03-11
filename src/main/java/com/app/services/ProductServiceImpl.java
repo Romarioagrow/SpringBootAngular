@@ -6,7 +6,6 @@ import com.app.mappers.ProductMapper;
 import com.app.repo.ProductRepo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -27,6 +26,19 @@ public class ProductServiceImpl implements ProductServiceApi {
     public List<ProductDto> getAllProducts() {
         Iterable<ProductEntity> all = productRepo.findAll(); /// productRepo.findAllProducts();
         return productMapper.mapEntityListToDto(all);
+    }
+
+    @Override
+    public ResponseEntity<ProductDto> getProduct(UUID productId) {
+        Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
+
+        if (optionalProductEntity.isPresent()) {
+            ProductDto productDto = productMapper.mapProductEntityToDto(optionalProductEntity.get());
+            return new ResponseEntity<>(productDto, HttpStatus.valueOf(200));
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
     @Override
