@@ -1,8 +1,7 @@
 <p>product-input-form works!</p>
 <ng-form>
   <mat-form-field appearance="fill">
-    <!--<mat-label>Input</mat-label>-->
-    <input matInput [(ngModel)]="newProductName" name="something" placeholder="Input"/>
+    <input matInput [(ngModel)]="product.name" name="something" placeholder="Input"/>
   </mat-form-field>
   <button mat-button color="primary" (click)="addNewProduct()">Primary</button>
 </ng-form>

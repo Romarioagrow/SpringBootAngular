@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import {Product} from "../product";
 
 @Component({
   selector: 'app-product-input-form',
@@ -8,15 +9,17 @@ import { MatInputModule } from '@angular/material/input';
   styleUrls: ['./product-input-form.component.css']
 })
 export class ProductInputFormComponent implements OnInit {
-  newProductName: any;
+  product: Product;
 
-  constructor() { }
+  constructor() {
+    this.product = new Product()
+  }
 
   ngOnInit(): void {
   }
 
   addNewProduct() {
-    console.log('addNewProduct')
-    console.log('newProductName', this.newProductName)
+    console.log('newProductName', this.product)
+    console.log('newProductName', this.product.name)
   }
 }
