@@ -1,0 +1,59 @@
+<p>products works!</p>
+
+
+<app-product-input-form></app-product-input-form>
+
+
+
+<!--<form class="products-input-form">
+<mat-form-field>
+  <mat-label>Favorite food</mat-label>
+  <input matInput placeholder="Ex. Pizza" value="Sushi">
+</mat-form-field>
+</form>-->
+<!--<mat-form-field class="example-full-width">
+  <mat-label>Leave a comment</mat-label>
+  <textarea matInput placeholder="Ex. It makes me feel..."></textarea>
+</mat-form-field>
+-->
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- ProductID Column -->
+  <ng-container matColumnDef="productID">
+    <th mat-header-cell *matHeaderCellDef> ProductID </th>
+    <td mat-cell *matCellDef="let element"> {{element.productID}} </td>
+  </ng-container>
+
+  <!-- ProductName Column -->
+  <ng-container matColumnDef="productName">
+    <th mat-header-cell *matHeaderCellDef> ProductName </th>
+    <td mat-cell *matCellDef="let element">
+      <button [routerLink]="['product', element.name]" nbButton outline status="info">{{element.productName}}</button>
+    </td>
+  </ng-container>
+
+  <!-- ProductType Column -->
+  <ng-container matColumnDef="productType">
+    <th mat-header-cell *matHeaderCellDef> ProductType </th>
+    <td mat-cell *matCellDef="let element"> {{element.articul}} </td>
+  </ng-container>
+
+  <!-- ProductPrice Column -->
+  <ng-container matColumnDef="productPrice">
+    <th mat-header-cell *matHeaderCellDef> ProductPrice </th>
+    <td mat-cell *matCellDef="let element"> {{element.productPrice}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+
+
+
+
+<!--<div class="row" *ngFor="let hero of productData">
+  <div class="col">
+    <p>{{hero}}</p>
+  </div>
+</div>-->
