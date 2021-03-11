@@ -16,6 +16,10 @@ import {MatButtonModule} from "@angular/material/button";
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCardModule} from "@angular/material/card";
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,6 +39,8 @@ import { MatInputModule } from '@angular/material/input';
     NbButtonGroupModule,
     MatButtonModule,
     MatInputModule,
+    FlexLayoutModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

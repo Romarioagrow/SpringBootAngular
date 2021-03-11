@@ -4,22 +4,20 @@ export class Product {
   private Integer price, amount;
   private LocalDate productionDate;*/
   constructor(
-    public productId: string = '',
+    /*public productId: string = '',
     public name: string = '',
     public articul: string = '',
-    public price: number = 0,
-    public amount: number = 0
+    public price: number,
+    public amount: number*/
 
   ) { }
 
-  /*productId: string
+  productId: string
   name: string
   articul: string
   price: number
   amount: number
-  productionDate: Date*/
-
-
+  productionDate: Date
 
 }
 
