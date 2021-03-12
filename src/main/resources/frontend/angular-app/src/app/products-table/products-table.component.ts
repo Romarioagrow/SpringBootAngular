@@ -19,18 +19,6 @@ export class ProductsTableComponent implements OnInit {
 
     this.findAll();
 
-    /*let apiUrl = 'api/products'
-    let url = isDevMode() ? 'http://localhost:9000/app-cli/' + apiUrl : apiUrl
-    console.log('let url: ' + url)
-
-    this.http.get(url,{
-      headers: {'Access-Control-Allow-Origin':'*'}
-    }).subscribe(data => {
-      console.log(data);
-      if (data) {
-        this.dataSource = data;
-      }
-    });*/
   }
 
   public findAll(): any {
@@ -62,6 +50,5 @@ export class ProductsTableComponent implements OnInit {
         this.dataSource = data
       }
     });
-
   }
 }
