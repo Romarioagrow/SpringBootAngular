@@ -1,6 +1,7 @@
 import {Component, isDevMode, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../product';
+import {HttpService} from '../http-service';
 
 @Component({
   selector: 'app-products-table',
@@ -9,7 +10,7 @@ import {Product} from '../product';
 })
 export class ProductsTableComponent implements OnInit {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private httpService: HttpService) {
   }
 
   displayedColumns: string[] =
@@ -20,26 +21,11 @@ export class ProductsTableComponent implements OnInit {
 
     this.findAll();
 
-    /*let apiUrl = 'api/products'
-    let url = isDevMode() ? 'http://localhost:9000/app-cli/' + apiUrl : apiUrl
-    console.log('let url: ' + url)
-
-    this.http.get(url,{
-      headers: {'Access-Control-Allow-Origin':'*'}
-    }).subscribe(data => {
-      console.log(data);
-      if (data) {
-        this.dataSource = data;
-      }
-    });*/
   }
 
-  public findAll(): any {
-    const url = 'http://localhost:9000/api/products/get/all';
-    return this.http.get<Product[]>(url).subscribe(data => {
+  public findAll(): void {
+    this.httpService.getAllProducts().subscribe(data => {
       console.log(data);
-      console.log(data);
-
       if (data) {
         console.log('data', data);
         this.tableProducts = data;
@@ -47,7 +33,7 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
-  createProductsList() {
+  /*createProductsList() {
     console.log('createProductsList');
 
     const apiUrl = 'api/products/createList';
@@ -64,7 +50,7 @@ export class ProductsTableComponent implements OnInit {
       }
     });
 
-  }
+  }*/
 
   editProduct(product: Product) {
 
