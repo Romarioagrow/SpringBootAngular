@@ -1,22 +1,23 @@
 import {Injectable, NgModule} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Product} from "./product";
+import {Observable} from "rxjs";
 
 @NgModule()
 @Injectable()
 export class HttpService {
   constructor(private http: HttpClient) { }
 
-  readonly URL_GET_ALL_PRODUCT = 'http://localhost:9000/api/products/get/all';
+  readonly URL_GET_ALL_PRODUCT = 'http://localhost:9000/api/products/get/all/';
 
-  readonly URL_CREATE_PRODUCT = 'http://localhost:9000/api/products/create';
+  readonly URL_CREATE_PRODUCT = 'http://localhost:9000/api/products/create/';
 
-  readonly URL_EDIT_PRODUCT = 'http://localhost:9000/api/products/edit';
+  readonly URL_EDIT_PRODUCT = 'http://localhost:9000/api/products/edit/';
 
-  readonly URL_DELETE_PRODUCT = 'http://localhost:9000/api/products/delete';
+  readonly URL_DELETE_PRODUCT = 'http://localhost:9000/api/products/delete/';
 
-  public getAllProducts() {
-    return this.http.get(this.URL_GET_ALL_PRODUCT);
+  public getAllProducts(): Observable<Product[]> {
+    return this.http.get<Product[]>(this.URL_GET_ALL_PRODUCT);
   }
 
   public createNewProduct(product: Product) {
@@ -28,9 +29,14 @@ export class HttpService {
   }
 
   public deleteProduct(productId: string) {
-    const httpParams = new HttpParams().set('productID', productId);
-    const options = { params: httpParams };
-    return this.http.delete(this.URL_DELETE_PRODUCT, { responseType: 'text' });
+    const deleteProductUrl = this.URL_DELETE_PRODUCT + productId;
+    // const httpParams = new HttpParams().set('productID', productId);
+    // const options = { params: httpParams };
+    return this.http.delete(deleteProductUrl);
+
+    /*return this.http.delete(deleteProductUrl).subscribe(response => {
+      return response;
+    });*/
   }
 
 }

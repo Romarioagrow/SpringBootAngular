@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductServiceApi {
     }
 
     @Override
-    @Transactional
+   // @Transactional
     public ResponseEntity<ProductDto> addNewProduct(ProductDto productDto) {
         ProductEntity productEntity = productMapper.mapDtoToProduct(productDto);
         productRepo.save(productEntity);
@@ -79,7 +79,8 @@ public class ProductServiceImpl implements ProductServiceApi {
     public ResponseEntity<?> deleteProduct(UUID productID) {
         try {
             productRepo.deleteById(productID);
-            return ResponseEntity.noContent().build();
+           // return ResponseEntity.noContent().build();
+            return new ResponseEntity<>(HttpStatus.valueOf(200));
         } catch (Exception e) {
             log.warn("Exception {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.valueOf(500));

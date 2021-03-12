@@ -15,7 +15,7 @@ export class ProductsTableComponent implements OnInit {
 
   displayedColumns: string[] =
     ['productID', 'productName', 'productType', 'productPrice', 'amount', 'productionDate', 'actions'];
-  tableProducts: Object = [];
+  tableProducts: any = [];
 
   ngOnInit(): void {
 
@@ -24,12 +24,23 @@ export class ProductsTableComponent implements OnInit {
   }
 
   public findAll(): void {
-    this.httpService.getAllProducts().subscribe(data => {
-      console.log(data);
-      if (data) {
-        console.log('data', data);
-        this.tableProducts = data;
+    this.httpService.getAllProducts().subscribe((data) => {
+      // console.log(data);
+      // if (data) {
+      console.log('data', data);
+      this.tableProducts = data.slice();
+      console.log('tableProducts', this.tableProducts);
+
+
+      /*if (data /!*&& data instanceof Product*!/) {
+        console.log('data instanceof', data);
+        this.tableProducts.push(data);
       }
+      else {
+        console.log('no instance');
+      }*/
+      // = data;
+      // }
     });
   }
 
@@ -41,8 +52,13 @@ export class ProductsTableComponent implements OnInit {
 
   deleteProduct(productId: string) {
     console.log('delete', productId);
-    this.httpService.deleteProduct(productId).subscribe(response => {
+    this.http.delete(productId).subscribe(response => {
       console.log('delete response', response);
+
+
     });
+    /*this.httpService.deleteProduct(productId).subscribe(response => {
+      console.log('delete response', response);
+    });*/
   }
 }
