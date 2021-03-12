@@ -28,11 +28,9 @@ export class HttpService {
     return this.http.put(this.URL_EDIT_PRODUCT, product);
   }
 
-  public deleteProduct(productId: string) {
+  public deleteProduct(productId: string): Observable<any> {
     const deleteProductUrl = this.URL_DELETE_PRODUCT + productId;
-    // const httpParams = new HttpParams().set('productID', productId);
-    // const options = { params: httpParams };
-    return this.http.delete(deleteProductUrl);
+    return this.http.delete<number>(deleteProductUrl);
 
     /*return this.http.delete(deleteProductUrl).subscribe(response => {
       return response;

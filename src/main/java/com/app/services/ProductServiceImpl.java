@@ -11,6 +11,8 @@ import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.TransactionException;
+import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -77,14 +79,26 @@ public class ProductServiceImpl implements ProductServiceApi {
     @Override
     @Transactional
     public ResponseEntity<?> deleteProduct(UUID productID) {
+        /*
+        * transaction.UnexpectedRollbackException
+        * */
+
         try {
             productRepo.deleteById(productID);
            // return ResponseEntity.noContent().build();
             return new ResponseEntity<>(HttpStatus.valueOf(200));
-        } catch (Exception e) {
-            log.warn("Exception {}", e.getMessage());
+        } catch (RuntimeException e) {
+            log.warn("RuntimeException {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.valueOf(500));
         }
+        /*catch (RuntimeException e) {
+            log.warn("RuntimeException {}", e.getMessage());
+            return new ResponseEntity<>(HttpStatus.valueOf(500));
+        }*/
+        /*finally {
+            log.warn("Exception handle");
+            return new ResponseEntity<>(HttpStatus.valueOf(500));
+        }*/
 
     }
 }
