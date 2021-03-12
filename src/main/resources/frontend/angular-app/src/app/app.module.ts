@@ -18,13 +18,15 @@ import { MatInputModule } from '@angular/material/input';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from "@angular/material/card";
+import { ProductsTableComponent } from './products-table/products-table.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     ProductsComponent,
-    ProductInputFormComponent
+    ProductInputFormComponent,
+    ProductsTableComponent
   ],
   imports: [
     BrowserModule,

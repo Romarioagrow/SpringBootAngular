@@ -2,8 +2,36 @@
 <ng-form>
 
 
-  <mat-card>
+  <!--<div class="cardInner">
+    <div [style.grid-area]="'header'">
+      Header
+    </div>
+    <div [style.grid-area]="'side'">
+      Side
+    </div>
+    <div [style.grid-area]="'content'">
+      Content
+    </div>
 
+  </div>
+
+
+  <div fxLayout="column" fxLayoutGap="32px">
+    <mat-card>1</mat-card>
+    <mat-card>2</mat-card>
+    <mat-card>3</mat-card>
+  </div>
+
+  <div layout="row">
+    <div flex>First item in row</div>
+    <div flex>Second item in row</div>
+  </div>
+  <div layout="column">
+    <div flex>First item in column</div>
+    <div flex>Second item in column</div>
+  </div>-->
+
+  <mat-card>
     <mat-card-title>
       Add New Product
     </mat-card-title>
@@ -35,14 +63,11 @@
     <mat-card-actions>
       <button mat-button color="primary" (click)="addNewProduct()">Primary</button>
     </mat-card-actions>
-
   </mat-card>
-
 
   <!--<mat-form-field appearance="fill">
     <input matInput [(ngModel)]="product.name" name="something" placeholder="Input"/>
   </mat-form-field>-->
-
 
 </ng-form>
 

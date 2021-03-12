@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Product} from "../product";
+import {HttpClient} from "@angular/common/http";
 
 
 @Component({
@@ -10,7 +11,7 @@ import {Product} from "../product";
 export class ProductInputFormComponent implements OnInit {
   product: Product;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.product = new Product()
   }
 
@@ -20,5 +21,16 @@ export class ProductInputFormComponent implements OnInit {
   addNewProduct() {
     console.log('newProductName', this.product)
     console.log('newProductName', this.product.name)
+
+    const url_ADD_NEW_PRODUCT = 'http://localhost:9000/api/products/create'
+
+    return this.http.post<Product[]>(url_ADD_NEW_PRODUCT, this.product).subscribe(response => {
+      console.log(response)
+
+      /*TODO: add new product to products table
+      *
+      * */
+
+    });
   }
 }

@@ -50,6 +50,7 @@ public class ProductServiceImpl implements ProductServiceApi {
     }
 
     @Override
+    @Transactional
     public ResponseEntity<ProductDto> updateProduct(ProductDto productDto) {
         UUID productID = productDto.getProductId();
 

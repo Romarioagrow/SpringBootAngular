@@ -51,14 +51,14 @@ import {Product} from "../product";
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
-  constructor(private http: HttpClient){}
+  constructor(/*private http: HttpClient*/){}
 
-  displayedColumns: string[] = ['productID', 'productName', 'productType', 'productPrice'];
-  dataSource :  Object = [];
+  /*displayedColumns: string[] = ['productID', 'productName', 'productType', 'productPrice'];
+  dataSource :  Object = [];*/
 
   ngOnInit(): void {
 
-    this.findAll();
+   // this.findAll();
 
     /*let apiUrl = 'api/products'
     let url = isDevMode() ? 'http://localhost:9000/app-cli/' + apiUrl : apiUrl
@@ -74,7 +74,7 @@ export class ProductsComponent implements OnInit {
     });*/
   }
 
-  public findAll(): any {
+  /*public findAll(): any {
     const url = 'http://localhost:9000/api/products/get/all'
     return this.http.get<Product[]>(url).subscribe(value => {
       console.log(value)
@@ -84,11 +84,9 @@ export class ProductsComponent implements OnInit {
 
   createProductsList() {
     console.log('createProductsList')
-
     let apiUrl = 'api/products/createList'
     let url = isDevMode() ? 'http://localhost:8080/app-cli/' + apiUrl : apiUrl
     console.log('createProductsList url: ' + url)
-
     this.http.get(url,{
       headers: {'Access-Control-Allow-Origin':'*'}
     }).subscribe(data => {
@@ -98,7 +96,6 @@ export class ProductsComponent implements OnInit {
         this.dataSource = data
       }
     });
-
-  }
+  }*/
 
 }
