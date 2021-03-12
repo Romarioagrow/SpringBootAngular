@@ -13,7 +13,7 @@ export class ProductsTableComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['productID', 'productName', 'productType', 'productPrice'];
-  dataSource: Object = [];
+  dataSource: Object = [{}];
 
   ngOnInit(): void {
 
@@ -35,9 +35,14 @@ export class ProductsTableComponent implements OnInit {
 
   public findAll(): any {
     const url = 'http://localhost:9000/api/products/get/all'
-    return this.http.get<Product[]>(url).subscribe(value => {
-      console.log(value)
-      console.log(value)
+    return this.http.get<Product[]>(url).subscribe(data => {
+      console.log(data)
+      console.log(data)
+
+      if (data) {
+        console.log('data', data)
+        this.dataSource = data
+      }
     });
   }
 
