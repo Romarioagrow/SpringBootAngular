@@ -15,7 +15,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from "@angular/material/card";
 import { ProductsTableComponent } from './products-table/products-table.component';
-
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import { ProductsTableComponent } from './products-table/products-table.componen
     MatButtonModule,
     MatInputModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 <p>products-table works!</p>
-<table mat-table [dataSource]="dataSource">
+<table mat-table [dataSource]="tableProducts">
   <!-- ProductID Column -->
   <ng-container matColumnDef="productID">
     <th mat-header-cell *matHeaderCellDef> ProductID </th>
@@ -24,6 +24,31 @@
   <ng-container matColumnDef="productPrice">
     <th mat-header-cell *matHeaderCellDef> ProductPrice </th>
     <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> amount </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="productionDate">
+    <th mat-header-cell *matHeaderCellDef> productionDate </th>
+    <td mat-cell *matCellDef="let element"> {{element.productionDate}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef> actions </th>
+    <td mat-cell *matCellDef="let product">
+
+      <button (click)="editProduct(product)" mat-icon-button aria-label="Edit">
+        <mat-icon>edit</mat-icon>
+      </button>
+
+      <button (click)="deleteProduct(product)" mat-icon-button aria-label="Delete">
+        <mat-icon>delete</mat-icon>
+      </button>
+
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
