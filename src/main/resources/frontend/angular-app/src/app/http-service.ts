@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable, NgModule} from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Product} from "./product";
 
+@NgModule()
 @Injectable()
 export class HttpService {
   constructor(private http: HttpClient) { }
@@ -29,7 +30,7 @@ export class HttpService {
   public deleteProduct(productId: string) {
     const httpParams = new HttpParams().set('productID', productId);
     const options = { params: httpParams };
-    return this.http.delete(this.URL_DELETE_PRODUCT, options);
+    return this.http.delete(this.URL_DELETE_PRODUCT, { responseType: 'text' });
   }
 
 }

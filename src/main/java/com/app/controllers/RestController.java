@@ -5,6 +5,7 @@ import com.app.services.ProductServiceApi;
 import com.app.services.ProductServiceImpl;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,13 +34,13 @@ public class RestController {
         return productService.addNewProduct(productDto);
     }
 
-    @PutMapping("/edit")
-    public ResponseEntity<ProductDto> editProduct(@RequestBody ProductDto productDto) {
-        return productService.updateProduct(productDto);
+    @PutMapping("/edit/{productId}")
+    public ResponseEntity<HttpStatus> editProduct(@PathVariable UUID productId/*@RequestBody ProductDto productDto*/) {
+        return productService.updateProduct(/*productDto*/productId);
     }
 
-    @DeleteMapping("/delete")
-    public ResponseEntity<?> deleteProduct(@RequestBody UUID productID) {
-        return productService.deleteProduct(productID);
+    @DeleteMapping("/delete/{productId}")
+    public ResponseEntity<?> deleteProduct(/*@RequestBody */@PathVariable UUID productId) {
+        return productService.deleteProduct(productId);
     }
 }

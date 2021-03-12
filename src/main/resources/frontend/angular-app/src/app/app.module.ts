@@ -15,7 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from "@angular/material/card";
 import { ProductsTableComponent } from './products-table/products-table.component';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
+import {HttpService} from "./http-service";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { MatIconModule } from '@angular/material/icon'
     MatInputModule,
     FlexLayoutModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    HttpService
   ],
   providers: [],
   bootstrap: [AppComponent]

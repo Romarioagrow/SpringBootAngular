@@ -33,34 +33,16 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
-  /*createProductsList() {
-    console.log('createProductsList');
-
-    const apiUrl = 'api/products/createList';
-    const url = isDevMode() ? 'http://localhost:8080/app-cli/' + apiUrl : apiUrl;
-    console.log('createProductsList url: ' + url);
-
-    this.http.get(url, {
-      headers: {'Access-Control-Allow-Origin': '*'}
-    }).subscribe(data => {
-      console.log(data);
-      if (data) {
-        console.log(data);
-        this.tableProducts = data;
-      }
-    });
-
-  }*/
-
   editProduct(product: Product) {
 
     console.log('edit', product);
 
   }
 
-  deleteProduct(product: Product) {
-
-    console.log('delete', product);
-
+  deleteProduct(productId: string) {
+    console.log('delete', productId);
+    this.httpService.deleteProduct(productId).subscribe(response => {
+      console.log('delete response', response);
+    });
   }
 }
