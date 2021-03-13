@@ -34,15 +34,11 @@ export class ProductInputFormComponent implements OnInit {
       console.log('updateProduct');
       this.updateProduct();
     }
-
-
   }
-  updateProduct(): void {
-    console.log('updateProduct(): void');
-    this.httpService.editProduct(this.product).subscribe((response) => {
-      // response
-      console.log('addEditedProductToTable: responce', response);
 
+  updateProduct(): void {
+    this.httpService.editProduct(this.product).subscribe((response) => {
+      console.log('addEditedProductToTable: response', response);
       this.addEditedProductToTable();
     });
   }
@@ -51,20 +47,19 @@ export class ProductInputFormComponent implements OnInit {
     this.httpService.createNewProduct(this.product).subscribe((response) => {
       console.log('response', response);
       this.addNewProductToTable(response);
-      // this.productTableComponent.addNewProductToTable(response);
     });
   }
 
   addEditedProductToTable(): void {
     this.productTableComponent.addEditedProductToTable(this.product);
+    this.product = new Product();
+    this.edited = false;
   }
 
   addNewProductToTable(response: Product): void {
     console.log('this.productTableComponent.addNewProductToTable');
-
     this.productTableComponent.addNewProductToTable(response);
   }
-
 
   productEditedHandler(editedProduct: Product): void {
     console.log('editedProduct', editedProduct);

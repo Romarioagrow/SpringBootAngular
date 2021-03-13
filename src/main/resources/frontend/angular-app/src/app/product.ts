@@ -1,23 +1,7 @@
 export class Product {
-  /*private UUID productId;
-  private String name, articul;
-  private Integer price, amount;
-  private LocalDate productionDate;*/
-  constructor() {}
 
-  /*constructor(product: Product
-    /!*public productId: string = '',
-    public name: string = '',
-    public articul: string = '',
-    public price: number,
-    public amount: number*!/
-
-  ) {
-    this.name = product.name;
-    this.articul = product.articul;
-    this.price = product.price;
-    this.amount = product.amount;
-  }*/
+  constructor() {
+  }
 
   productId: string;
   name: string;
@@ -36,6 +20,5 @@ export class Product {
     newProduct.productionDate = product.productionDate;
     return newProduct;
   }
-
 }
 

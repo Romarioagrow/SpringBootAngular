@@ -32,5 +32,4 @@ export class HttpService {
     const deleteProductUrl = this.URL_DELETE_PRODUCT + productId;
     return this.http.delete<number>(deleteProductUrl);
   }
-
 }

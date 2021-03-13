@@ -55,32 +55,11 @@ public class ProductServiceImpl implements ProductServiceApi {
         UUID productId = productDto.getProductId();
         Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
         if (optionalProductEntity.isPresent()) {
-           // ProductEntity editedProduct = optionalProductEntity.get();//productMapper.mapDtoToProduct(productDto);
             ProductEntity editedProduct = productMapper.mapDtoToProduct(productDto);
-            //if (productDto)
             productRepo.save(editedProduct);
             return new ResponseEntity<>(HttpStatus.valueOf(200));
         }
         else return ResponseEntity.notFound().build();
-
-
-        /*try {
-            Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
-            if (optionalProductEntity.isEmpty())
-                return ResponseEntity.notFound().build();
-
-            ProductEntity productEntity = optionalProductEntity.get();//productMapper.mapDtoToProduct(productDto);
-            productEntity.setProductId(productId);
-
-            productRepo.save(productEntity);
-            return new ResponseEntity<>(HttpStatus.valueOf(200));
-        }
-        catch (Exception e) {
-            *//*TODO: CrudErrors Handler*//*
-            log.warn("Exception {}", e.getMessage());
-            return new ResponseEntity<>(HttpStatus.valueOf(500));
-        }*/
-
     }
 
     @Override
@@ -92,20 +71,10 @@ public class ProductServiceImpl implements ProductServiceApi {
 
         try {
             productRepo.deleteById(productID);
-           // return ResponseEntity.noContent().build();
             return new ResponseEntity<>(HttpStatus.valueOf(200));
         } catch (RuntimeException e) {
             log.warn("RuntimeException {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.valueOf(500));
         }
-        /*catch (RuntimeException e) {
-            log.warn("RuntimeException {}", e.getMessage());
-            return new ResponseEntity<>(HttpStatus.valueOf(500));
-        }*/
-        /*finally {
-            log.warn("Exception handle");
-            return new ResponseEntity<>(HttpStatus.valueOf(500));
-        }*/
-
     }
 }

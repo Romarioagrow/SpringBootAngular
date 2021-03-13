@@ -29,7 +29,7 @@ export class ProductsTableComponent implements OnInit {
     console.log('addEditedProductToTable', editedProduct);
 
     const index = this.tableProducts.findIndex((product) => product.productId === editedProduct.productId);
-    if (index > 0) {
+    if (index >= 0) {
       this.tableProducts[index] = editedProduct;
       this.tableProducts = [...this.tableProducts];
     }
@@ -46,32 +46,11 @@ export class ProductsTableComponent implements OnInit {
     this.httpService.getAllProducts().subscribe((data) => {
       console.log('data', data);
       this.tableProducts = data;
-
     });
   }
 
   editProduct(productToEdition: Product): void {
-    console.log('edit', productToEdition);
-
-
-    /*
-    *
-    * 1 Send product data to editor
-    * 2 Save edited fields to product in table
-    * */
-
-
-
-
     this.productChanged.emit(productToEdition);
-
-
-
-    /*this.httpService.editProduct(productToEdition).subscribe((response) => {
-      console.log(response);
-
-    })*/
-
   }
 
   deleteProduct(productId: string): void {
