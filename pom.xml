@@ -96,13 +96,13 @@
                     </execution>
 
                     <execution>
-                        <id>npm run build</id>
+                        <id>npm run-script build</id>
                         <goals>
                             <goal>npm</goal>
                         </goals>
                         <configuration>
                             <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
-                            <arguments>run</arguments>
+                            <arguments>run-script</arguments>
                             <arguments>build</arguments>
                         </configuration>
                     </execution>
