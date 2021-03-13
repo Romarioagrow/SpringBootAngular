@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../product';
 import {HttpService} from '../http-service';
@@ -11,6 +11,8 @@ import {HttpService} from '../http-service';
 export class ProductsTableComponent implements OnInit {
   @Input('childToMaster') newProduct: Product;
 
+  @Output() productChanged: EventEmitter<Product> = new EventEmitter();
+
   constructor(private http: HttpClient,
               private httpService: HttpService,
   ) {}
@@ -20,8 +22,17 @@ export class ProductsTableComponent implements OnInit {
   tableProducts: Product[] = [];
 
   ngOnInit(): void {
-
     this.findAll();
+  }
+
+  addEditedProductToTable(editedProduct: Product): void {
+    console.log('addEditedProductToTable', editedProduct);
+
+    const index = this.tableProducts.findIndex((product) => product.productId === editedProduct.productId);
+    if (index >= 0) {
+      this.tableProducts[index] = editedProduct;
+      this.tableProducts = [...this.tableProducts];
+    }
   }
 
   addNewProductToTable(product: Product): void {
@@ -35,12 +46,11 @@ export class ProductsTableComponent implements OnInit {
     this.httpService.getAllProducts().subscribe((data) => {
       console.log('data', data);
       this.tableProducts = data;
-
     });
   }
 
-  editProduct(product: Product): void {
-    console.log('edit', product);
+  editProduct(productToEdition: Product): void {
+    this.productChanged.emit(productToEdition);
   }
 
   deleteProduct(productId: string): void {

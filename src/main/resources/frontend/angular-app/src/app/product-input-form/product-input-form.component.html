@@ -1,40 +1,43 @@
-<p>product-input-form works!</p>
-<ng-form>
 
-  <mat-card>
-    <mat-card-title>
-      Add New Product
-    </mat-card-title>
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxFlex="25%">
+    <ng-form >
+      <mat-card>
+        <mat-card-title>
+          Add New Product
+        </mat-card-title>
+        <mat-card-content>
+          <mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="product.name" name="name" placeholder="name"/>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="product.articul" name="articul" placeholder="articul"/>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="product.price" name="price" placeholder="price"/>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-content>
+          <mat-form-field appearance="fill">
+            <input matInput [(ngModel)]="product.amount" name="amount" placeholder="amount"/>
+          </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="saveNewProduct()">Save</button>
+          <button mat-button color="error" *ngIf="edited" (click)="cancelEdition()">Cancel</button>
+        </mat-card-actions>
+      </mat-card>
+    </ng-form>
+  </div>
 
-    <mat-card-content>
-      <mat-form-field appearance="fill">
-        <input matInput [(ngModel)]="product.name" name="name" placeholder="name"/>
-      </mat-form-field>
-    </mat-card-content>
-
-    <mat-card-content>
-      <mat-form-field appearance="fill">
-        <input matInput [(ngModel)]="product.articul" name="articul" placeholder="articul"/>
-      </mat-form-field>
-    </mat-card-content>
-
-    <mat-card-content>
-      <mat-form-field appearance="fill">
-        <input matInput [(ngModel)]="product.price" name="price" placeholder="price"/>
-      </mat-form-field>
-    </mat-card-content>
-
-    <mat-card-content>
-      <mat-form-field appearance="fill">
-        <input matInput [(ngModel)]="product.amount" name="amount" placeholder="amount"/>
-      </mat-form-field>
-    </mat-card-content>
-
-    <mat-card-actions>
-      <button mat-button color="primary" (click)="addNewProduct()">Add</button>
-    </mat-card-actions>
-  </mat-card>
-</ng-form>
+  <div fxFlex="100%">
+    <app-products-table [childToMaster]="product" (productChanged)="productEditedHandler($event)"></app-products-table>
+  </div>
+</div>
 
 
 <app-products-table [childToMaster]="product"></app-products-table>

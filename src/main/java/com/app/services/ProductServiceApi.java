@@ -17,7 +17,7 @@ public interface ProductServiceApi {
 
     ResponseEntity<ProductDto> addNewProduct(ProductDto productDto);
 
-    ResponseEntity<HttpStatus> updateProduct(UUID productId);
+    ResponseEntity<HttpStatus> updateProduct(ProductDto productId);
 
     ResponseEntity<?> deleteProduct(UUID productID);
 
