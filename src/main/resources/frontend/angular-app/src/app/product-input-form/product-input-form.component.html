@@ -58,8 +58,10 @@
     </mat-card-content>
 
     <mat-card-actions>
-      <button mat-button color="primary" (click)="addNewProduct()">Add</button>
+      <button mat-button color="primary" (click)="saveNewProduct()">Save</button>
+      <button mat-button color="error" *ngIf="edited" (click)="cancelEdition()">Cancel</button>
     </mat-card-actions>
+
   </mat-card>
 </ng-form>
 

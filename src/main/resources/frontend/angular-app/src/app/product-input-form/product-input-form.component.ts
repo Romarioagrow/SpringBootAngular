@@ -23,7 +23,7 @@ export class ProductInputFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  addNewProduct(): void {
+  saveNewProduct(): void {
     console.log('newProductName', this.product);
 
     this.httpService.createNewProduct(this.product).subscribe((response) => {
@@ -37,5 +37,10 @@ export class ProductInputFormComponent implements OnInit {
     this.product = editedProduct;
     this.edited = true;
     console.log('this.product', this.product);
+  }
+
+  cancelEdition(): void {
+    this.product = new Product();
+    this.edited = false;
   }
 }
