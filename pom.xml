@@ -73,6 +73,7 @@
                 <configuration>
                     <nodeVersion>v14.15.4</nodeVersion>
                     <npmVersion>6.14.4</npmVersion>
+                    <installDirectory>target</installDirectory>
                 </configuration>
 
                 <executions>
@@ -89,7 +90,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
+                            <workingDirectory>/src/main/resources/frontend/angular-app</workingDirectory>
                             <arguments>install</arguments>
                         </configuration>
                     </execution>
@@ -100,7 +101,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
+                            <workingDirectory>/src/main/resources/frontend/angular-app</workingDirectory>
                             <arguments>run</arguments>
                             <arguments>build</arguments>
                         </configuration>
