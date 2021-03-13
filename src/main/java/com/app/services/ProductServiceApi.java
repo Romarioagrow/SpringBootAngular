@@ -1,6 +1,7 @@
 package com.app.services;
 
 import com.app.domain.dto.ProductDto;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public interface ProductServiceApi {
 
     ResponseEntity<ProductDto> addNewProduct(ProductDto productDto);
 
-    ResponseEntity<ProductDto> updateProduct(ProductDto productDto);
+    ResponseEntity<HttpStatus> updateProduct(UUID productId);
 
     ResponseEntity<?> deleteProduct(UUID productID);
 
