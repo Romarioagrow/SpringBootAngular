@@ -1,8 +1,10 @@
-import {Component, Input, isDevMode, OnInit} from '@angular/core';
+import {Component, Input, isDevMode, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../product';
 import {HttpService} from '../http-service';
 import {SharedDataService} from '../data-service';
+// @ts-ignore
+import EventEmitter = require("node:events");
 
 @Component({
   selector: 'app-products-table',
@@ -10,12 +12,18 @@ import {SharedDataService} from '../data-service';
   styleUrls: ['./products-table.component.css']
 })
 export class ProductsTableComponent implements OnInit {
-  //@Input() newProduct: Product;
+  @Input('childToMaster') newProduct: Product;
+
+  //@Output() childToParent = new EventEmitter<Product>();
+
+  //@Output() childToParent = new EventEmitter<Product>();
+  //@Input('childToMaster') newProduct: Product;
 
   constructor(private http: HttpClient,
               private httpService: HttpService,
               private sharedDataService: SharedDataService
   ) {}
+
 
   displayedColumns: string[] =
     ['productID', 'productName', 'productType', 'productPrice', 'amount', 'productionDate', 'actions'];
@@ -28,6 +36,12 @@ export class ProductsTableComponent implements OnInit {
       astronaut => {
         this.history.push(`${astronaut} confirmed the mission`);
       });*/
+  }
+
+  addNewProductToTable(product: Product): void {
+    console.log('addNewProductToTable', product);
+    this.tableProducts.push(product);
+    console.log('tableProducts', this.tableProducts);
   }
 
   public findAll(): void {

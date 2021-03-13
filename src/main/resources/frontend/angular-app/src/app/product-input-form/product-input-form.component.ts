@@ -1,7 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {Product} from "../product";
 import {HttpClient} from "@angular/common/http";
 import {SharedDataService} from '../data-service';
+// @ts-ignore
+import EventEmitter = require("events");
+import {ProductsTableComponent} from "../products-table/products-table.component";
 
 @Component({
   selector: 'app-product-input-form',
@@ -10,8 +13,10 @@ import {SharedDataService} from '../data-service';
   providers: [SharedDataService]
 })
 export class ProductInputFormComponent implements OnInit {
-  //@ViewChild(ProductsTableComponent) component;
+  @ViewChild(ProductsTableComponent) component: ProductsTableComponent;
+  ///@Input() newProduct: Product;
 
+//  @Output() childToParent = new EventEmitter<Product>();
 
   product: Product;
 
@@ -38,9 +43,13 @@ export class ProductInputFormComponent implements OnInit {
     return this.http.post<Product[]>(url_ADD_NEW_PRODUCT, this.product).subscribe(response => {
       console.log(response);
 
+      this.component.addNewProductToTable(this.product);
+
+      //this.childToParent.emit(this.product);
+
       //this.component.tableProducts.push(this.product);
 
-      this.sharedDataService.addNewProduct(this.product);
+      //this.sharedDataService.addNewProduct(this.product);
 
 
 
@@ -53,5 +62,9 @@ export class ProductInputFormComponent implements OnInit {
       * */
 
     });
+  }
+
+  childToParent($event: any) {
+
   }
 }
