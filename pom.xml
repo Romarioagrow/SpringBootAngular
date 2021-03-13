@@ -70,14 +70,8 @@
                 <version>1.6.0</version>
                 <executions>
                     <execution>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>npm install</id>
-                        <phase>generate-sources</phase>
+                        <id>run-npm-install</id>
+                        <phase>compile</phase>
                         <goals>
                             <goal>exec</goal>
                         </goals>
@@ -88,16 +82,57 @@
                             </arguments>
                         </configuration>
                     </execution>
+                    <execution>
+                        <id>ng build</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
+                            <executable>ng</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
                 </executions>
-                <configuration>
-                    <executable>npm</executable>
-                    <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
-                    <arguments>
-                        <argument>run</argument>
-                        <argument>build</argument>
-                    </arguments>
-                </configuration>
             </plugin>
+
+            <!--            <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>exec-maven-plugin</artifactId>
+                            <version>1.6.0</version>
+                            <executions>
+                                <execution>
+                                    <phase>validate</phase>
+                                    <goals>
+                                        <goal>exec</goal>
+                                    </goals>
+                                </execution>
+                                <execution>
+                                    <id>npm install</id>
+                                    <phase>generate-sources</phase>
+                                    <goals>
+                                        <goal>exec</goal>
+                                    </goals>
+                                    <configuration>
+                                        <executable>npm</executable>
+                                        <arguments>
+                                            <argument>install</argument>
+                                        </arguments>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <executable>npm</executable>
+                                <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
+                                <arguments>
+                                    <argument>run</argument>
+                                    <argument>build</argument>
+                                </arguments>
+                            </configuration>
+                        </plugin>-->
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
