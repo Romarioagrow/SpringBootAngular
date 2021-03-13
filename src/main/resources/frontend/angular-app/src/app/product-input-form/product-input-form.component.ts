@@ -26,15 +26,49 @@ export class ProductInputFormComponent implements OnInit {
   saveNewProduct(): void {
     console.log('newProductName', this.product);
 
-    this.httpService.createNewProduct(this.product).subscribe((response) => {
-      console.log('response', response);
-      this.productTableComponent.addNewProductToTable(response);
+    if (!this.edited) {
+      console.log('createNewProduct');
+      this.createNewProduct();
+    }
+    else {
+      console.log('updateProduct');
+      this.updateProduct();
+    }
+
+
+  }
+  updateProduct(): void {
+    console.log('updateProduct(): void');
+    this.httpService.editProduct(this.product).subscribe((response) => {
+      // response
+      console.log('addEditedProductToTable: responce', response);
+
+      this.addEditedProductToTable();
     });
   }
 
+  createNewProduct(): void {
+    this.httpService.createNewProduct(this.product).subscribe((response) => {
+      console.log('response', response);
+      this.addNewProductToTable(response);
+      // this.productTableComponent.addNewProductToTable(response);
+    });
+  }
+
+  addEditedProductToTable(): void {
+    this.productTableComponent.addEditedProductToTable(this.product);
+  }
+
+  addNewProductToTable(response: Product): void {
+    console.log('this.productTableComponent.addNewProductToTable');
+
+    this.productTableComponent.addNewProductToTable(response);
+  }
+
+
   productEditedHandler(editedProduct: Product): void {
     console.log('editedProduct', editedProduct);
-    this.product = editedProduct;
+    this.product = Product.initNewProduct(editedProduct);
     this.edited = true;
     console.log('this.product', this.product);
   }

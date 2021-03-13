@@ -12,7 +12,7 @@ export class HttpService {
 
   readonly URL_CREATE_PRODUCT = 'http://localhost:9000/api/products/create/';
 
-  readonly URL_EDIT_PRODUCT = 'http://localhost:9000/api/products/edit/';
+  readonly URL_EDIT_PRODUCT = 'http://localhost:9000/api/products/edit';
 
   readonly URL_DELETE_PRODUCT = 'http://localhost:9000/api/products/delete/';
 

@@ -22,8 +22,17 @@ export class ProductsTableComponent implements OnInit {
   tableProducts: Product[] = [];
 
   ngOnInit(): void {
-
     this.findAll();
+  }
+
+  addEditedProductToTable(editedProduct: Product): void {
+    console.log('addEditedProductToTable', editedProduct);
+
+    const index = this.tableProducts.findIndex((product) => product.productId === editedProduct.productId);
+    if (index > 0) {
+      this.tableProducts[index] = editedProduct;
+      this.tableProducts = [...this.tableProducts];
+    }
   }
 
   addNewProductToTable(product: Product): void {
