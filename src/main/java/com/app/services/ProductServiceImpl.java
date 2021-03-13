@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -45,6 +46,7 @@ public class ProductServiceImpl implements ProductServiceApi {
     @Transactional
     public ResponseEntity<ProductDto> addNewProduct(ProductDto productDto) {
         ProductEntity productEntity = productMapper.mapDtoToProduct(productDto);
+        productEntity.setProductionDate(LocalDate.now());
         productRepo.save(productEntity);
         return new ResponseEntity<>(productMapper.mapProductEntityToDto(productEntity), HttpStatus.valueOf(200));
     }

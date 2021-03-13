@@ -23,5 +23,4 @@ public class ProductEntity extends BaseEntity {
 
     private LocalDate productionDate;
 
-
 }
