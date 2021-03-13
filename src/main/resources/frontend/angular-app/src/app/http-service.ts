@@ -20,21 +20,17 @@ export class HttpService {
     return this.http.get<Product[]>(this.URL_GET_ALL_PRODUCT);
   }
 
-  public createNewProduct(product: Product) {
-    return this.http.post(this.URL_CREATE_PRODUCT, product);
+  public createNewProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(this.URL_CREATE_PRODUCT, product);
   }
 
-  public editProduct(product: Product) {
+  public editProduct(product: Product): Observable<any> {
     return this.http.put(this.URL_EDIT_PRODUCT, product);
   }
 
   public deleteProduct(productId: string): Observable<any> {
     const deleteProductUrl = this.URL_DELETE_PRODUCT + productId;
     return this.http.delete<number>(deleteProductUrl);
-
-    /*return this.http.delete(deleteProductUrl).subscribe(response => {
-      return response;
-    });*/
   }
 
 }

@@ -46,11 +46,11 @@ public class ProductServiceImpl implements ProductServiceApi {
     }
 
     @Override
-   // @Transactional
+    @Transactional
     public ResponseEntity<ProductDto> addNewProduct(ProductDto productDto) {
         ProductEntity productEntity = productMapper.mapDtoToProduct(productDto);
         productRepo.save(productEntity);
-        return new ResponseEntity<>(productDto, HttpStatus.valueOf(200));
+        return new ResponseEntity<>(productMapper.mapProductEntityToDto(productEntity), HttpStatus.valueOf(200));
     }
 
     @Override

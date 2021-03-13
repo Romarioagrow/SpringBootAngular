@@ -1,10 +1,7 @@
-import {Component, Input, isDevMode, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../product';
 import {HttpService} from '../http-service';
-import {SharedDataService} from '../data-service';
-// @ts-ignore
-import EventEmitter = require("node:events");
 
 @Component({
   selector: 'app-products-table',
@@ -14,16 +11,9 @@ import EventEmitter = require("node:events");
 export class ProductsTableComponent implements OnInit {
   @Input('childToMaster') newProduct: Product;
 
-  //@Output() childToParent = new EventEmitter<Product>();
-
-  //@Output() childToParent = new EventEmitter<Product>();
-  //@Input('childToMaster') newProduct: Product;
-
   constructor(private http: HttpClient,
               private httpService: HttpService,
-              private sharedDataService: SharedDataService
   ) {}
-
 
   displayedColumns: string[] =
     ['productID', 'productName', 'productType', 'productPrice', 'amount', 'productionDate', 'actions'];
@@ -32,14 +22,11 @@ export class ProductsTableComponent implements OnInit {
   ngOnInit(): void {
 
     this.findAll();
-    /*this.sharedDataService.missionConfirmed$.subscribe(
-      astronaut => {
-        this.history.push(`${astronaut} confirmed the mission`);
-      });*/
   }
 
   addNewProductToTable(product: Product): void {
     console.log('addNewProductToTable', product);
+    this.tableProducts = [...this.tableProducts];
     this.tableProducts.push(product);
     console.log('tableProducts', this.tableProducts);
   }
@@ -52,13 +39,11 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
-  editProduct(product: Product) {
-
+  editProduct(product: Product): void {
     console.log('edit', product);
-
   }
 
-  deleteProduct(productId: string) {
+  deleteProduct(productId: string): void {
     console.log('delete', productId);
     this.httpService.deleteProduct(productId).subscribe(
       response => {
