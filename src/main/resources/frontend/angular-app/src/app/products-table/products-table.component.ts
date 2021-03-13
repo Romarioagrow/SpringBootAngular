@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Product} from '../product';
 import {HttpService} from '../http-service';
@@ -10,6 +10,8 @@ import {HttpService} from '../http-service';
 })
 export class ProductsTableComponent implements OnInit {
   @Input('childToMaster') newProduct: Product;
+
+  @Output() productChanged: EventEmitter<Product> = new EventEmitter();
 
   constructor(private http: HttpClient,
               private httpService: HttpService,
@@ -39,8 +41,28 @@ export class ProductsTableComponent implements OnInit {
     });
   }
 
-  editProduct(product: Product): void {
-    console.log('edit', product);
+  editProduct(productToEdition: Product): void {
+    console.log('edit', productToEdition);
+
+
+    /*
+    *
+    * 1 Send product data to editor
+    * 2 Save edited fields to product in table
+    * */
+
+
+
+
+    this.productChanged.emit(productToEdition);
+
+
+
+    /*this.httpService.editProduct(productToEdition).subscribe((response) => {
+      console.log(response);
+
+    })*/
+
   }
 
   deleteProduct(productId: string): void {

@@ -14,6 +14,8 @@ export class ProductInputFormComponent implements OnInit {
 
   product: Product;
 
+  edited = false;
+
   constructor(private http: HttpClient, private httpService: HttpService) {
     this.product = new Product();
   }
@@ -28,5 +30,12 @@ export class ProductInputFormComponent implements OnInit {
       console.log('response', response);
       this.productTableComponent.addNewProductToTable(response);
     });
+  }
+
+  productEditedHandler(editedProduct: Product): void {
+    console.log('editedProduct', editedProduct);
+    this.product = editedProduct;
+    this.edited = true;
+    console.log('this.product', this.product);
   }
 }

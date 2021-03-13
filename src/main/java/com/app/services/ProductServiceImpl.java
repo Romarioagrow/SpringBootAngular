@@ -4,15 +4,11 @@ import com.app.domain.dto.ProductDto;
 import com.app.domain.jpa.ProductEntity;
 import com.app.mappers.ProductMapper;
 import com.app.repo.ProductRepo;
-import com.sun.xml.bind.v2.runtime.SwaRefAdapter;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionException;
-import org.springframework.transaction.UnexpectedRollbackException;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -55,9 +51,20 @@ public class ProductServiceImpl implements ProductServiceApi {
 
     @Override
     @Transactional
-    public ResponseEntity<HttpStatus> updateProduct(UUID productId) {
-        //UUID productID = productDto.getProductId();
-        try {
+    public ResponseEntity<HttpStatus> updateProduct(ProductDto productDto) {
+        UUID productId = productDto.getProductId();
+        Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
+        if (optionalProductEntity.isPresent()) {
+           // ProductEntity editedProduct = optionalProductEntity.get();//productMapper.mapDtoToProduct(productDto);
+            ProductEntity editedProduct = productMapper.mapDtoToProduct(productDto);
+            //if (productDto)
+            productRepo.save(editedProduct);
+            return new ResponseEntity<>(HttpStatus.valueOf(200));
+        }
+        else return ResponseEntity.notFound().build();
+
+
+        /*try {
             Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
             if (optionalProductEntity.isEmpty())
                 return ResponseEntity.notFound().build();
@@ -69,10 +76,10 @@ public class ProductServiceImpl implements ProductServiceApi {
             return new ResponseEntity<>(HttpStatus.valueOf(200));
         }
         catch (Exception e) {
-            /*TODO: CrudErrors Handler*/
+            *//*TODO: CrudErrors Handler*//*
             log.warn("Exception {}", e.getMessage());
             return new ResponseEntity<>(HttpStatus.valueOf(500));
-        }
+        }*/
 
     }
 

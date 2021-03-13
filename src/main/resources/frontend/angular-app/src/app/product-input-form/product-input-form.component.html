@@ -64,5 +64,5 @@
 </ng-form>
 
 
-<app-products-table [childToMaster]="product"></app-products-table>
+<app-products-table [childToMaster]="product" (productChanged)="productEditedHandler($event)"></app-products-table>
 

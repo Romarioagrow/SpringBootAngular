@@ -39,10 +39,10 @@ public class RestController {
         return productService.addNewProduct(productDto);
     }
 
-    @PutMapping("/edit/{productId}")
-    public ResponseEntity<HttpStatus> editProduct(@PathVariable UUID productId/*@RequestBody ProductDto productDto*/) {
+    @PutMapping("/edit")
+    public ResponseEntity<HttpStatus> editProduct(@RequestBody ProductDto productDto) {
         log.info("editProduct");
-        return productService.updateProduct(/*productDto*/productId);
+        return productService.updateProduct(productDto);
     }
 
     @DeleteMapping("/delete/{productId}")
