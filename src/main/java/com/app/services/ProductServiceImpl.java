@@ -31,52 +31,75 @@ public class ProductServiceImpl implements ProductServiceApi {
 
     @Override
     public ResponseEntity<ProductDto> getProduct(UUID productId) {
-        Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
-
-        if (optionalProductEntity.isPresent()) {
-            ProductDto productDto = productMapper.mapProductEntityToDto(optionalProductEntity.get());
-            return new ResponseEntity<>(productDto, HttpStatus.valueOf(200));
+        try {
+            Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
+            if (optionalProductEntity.isPresent()) {
+                ProductDto productDto = productMapper.mapProductEntityToDto(optionalProductEntity.get());
+                return returnResponseEntityWithCodeAndDto(200, productDto);
+            }
+            else {
+                log.warn("No Product with id {}", productId);
+                return ResponseEntity.notFound().build();
+            }
         }
-        else {
-            return ResponseEntity.notFound().build();
+        catch (RuntimeException e) {
+            return returnResponseEntityWithCodeAndDto(500, null);
         }
     }
 
     @Override
     @Transactional
     public ResponseEntity<ProductDto> addNewProduct(ProductDto productDto) {
-        ProductEntity productEntity = productMapper.mapDtoToProduct(productDto);
-        productEntity.setProductionDate(LocalDate.now());
-        productRepo.save(productEntity);
-        return new ResponseEntity<>(productMapper.mapProductEntityToDto(productEntity), HttpStatus.valueOf(200));
+        try {
+            ProductEntity productEntity = productMapper.mapDtoToProduct(productDto);
+            productEntity.setProductionDate(LocalDate.now());
+            productRepo.save(productEntity);
+            return returnResponseEntityWithCodeAndDto(200, productMapper.mapProductEntityToDto(productEntity));
+        }
+        catch (RuntimeException e) {
+            log.warn("Error while creating new Product {}", e.getMessage());
+            return returnResponseEntityWithCodeAndDto(500, null);
+        }
     }
 
     @Override
     @Transactional
     public ResponseEntity<HttpStatus> updateProduct(ProductDto productDto) {
-        UUID productId = productDto.getProductId();
-        Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
-        if (optionalProductEntity.isPresent()) {
-            ProductEntity editedProduct = productMapper.mapDtoToProduct(productDto);
-            productRepo.save(editedProduct);
-            return new ResponseEntity<>(HttpStatus.valueOf(200));
+        try {
+            UUID productId = productDto.getProductId();
+            Optional<ProductEntity> optionalProductEntity = productRepo.findById(productId);
+            if (optionalProductEntity.isPresent()) {
+                ProductEntity editedProduct = productMapper.mapDtoToProduct(productDto);
+                productRepo.save(editedProduct);
+                return returnResponseEntityWithCode(200);
+            } else return ResponseEntity.notFound().build();
         }
-        else return ResponseEntity.notFound().build();
+        catch (RuntimeException e) {
+            log.warn("Error while updating Product");
+            return returnResponseEntityWithCode(500);
+        }
     }
 
     @Override
     @Transactional
     public ResponseEntity<?> deleteProduct(UUID productID) {
         /*
-        * transaction.UnexpectedRollbackException
-        * */
-
+         * transaction.UnexpectedRollbackException
+         * */
         try {
             productRepo.deleteById(productID);
-            return new ResponseEntity<>(HttpStatus.valueOf(200));
+            return returnResponseEntityWithCode(200);
         } catch (RuntimeException e) {
             log.warn("RuntimeException {}", e.getMessage());
-            return new ResponseEntity<>(HttpStatus.valueOf(500));
+            return returnResponseEntityWithCode(500);
         }
+    }
+
+    private ResponseEntity<HttpStatus> returnResponseEntityWithCode(int code) {
+        return new ResponseEntity<>(HttpStatus.valueOf(code));
+    }
+
+    private ResponseEntity<ProductDto> returnResponseEntityWithCodeAndDto(int code, ProductDto productDto) {
+        return new ResponseEntity<>(productDto, HttpStatus.valueOf(code));
     }
 }
