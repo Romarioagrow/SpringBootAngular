@@ -59,6 +59,7 @@ export class ProductInputFormComponent implements OnInit {
   addNewProductToTable(response: Product): void {
     console.log('this.productTableComponent.addNewProductToTable');
     this.productTableComponent.addNewProductToTable(response);
+    this.product = new Product();
   }
 
   productEditedHandler(editedProduct: Product): void {
