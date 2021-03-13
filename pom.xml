@@ -90,7 +90,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>/src/main/resources/frontend/angular-app</workingDirectory>
+                            <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
                             <arguments>install</arguments>
                         </configuration>
                     </execution>
@@ -101,7 +101,7 @@
                             <goal>npm</goal>
                         </goals>
                         <configuration>
-                            <workingDirectory>/src/main/resources/frontend/angular-app</workingDirectory>
+                            <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
                             <arguments>run</arguments>
                             <arguments>build</arguments>
                         </configuration>
