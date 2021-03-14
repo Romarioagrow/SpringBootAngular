@@ -16,6 +16,7 @@ export class ProductInputFormComponent implements OnInit {
   edited = false;
   inputHeaderName = 'Add New Product';
 
+
   constructor(private http: HttpClient, private httpService: HttpService) {
     this.product = new Product();
   }

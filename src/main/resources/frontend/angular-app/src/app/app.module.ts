@@ -9,15 +9,16 @@ import {MatTableModule} from "@angular/material/table";
 import {RouterModule} from "@angular/router";
 import { ProductInputFormComponent } from './product-input-form/product-input-form.component';
 import {FormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material/button";
+import {MatButtonModule} from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {MatCardModule} from "@angular/material/card";
+import {MatCardModule} from '@angular/material/card';
 import { ProductsTableComponent } from './products-table/products-table.component';
 import { MatIconModule } from '@angular/material/icon';
-import {HttpService} from "./http-service";
+import {HttpService} from './http-service';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import { NgKnifeModule } from 'ng-knife';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatCardModule,
     MatIconModule,
     HttpService,
-    MatToolbarModule
+    MatToolbarModule,
+    NgKnifeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

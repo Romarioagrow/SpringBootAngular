@@ -18,12 +18,12 @@
         </mat-card-content>
         <mat-card-content>
           <mat-form-field appearance="fill">
-            <input matInput [(ngModel)]="product.price" name="price" placeholder="price"/>
+            <input type="number" matInput knifeOnlyNumbers [(ngModel)]="product.price" name="price" placeholder="price"/>
           </mat-form-field>
         </mat-card-content>
         <mat-card-content>
           <mat-form-field appearance="fill">
-            <input matInput [(ngModel)]="product.amount" name="amount" placeholder="amount"/>
+            <input type="number" matInput knifeOnlyNumbers [(ngModel)]="product.amount" name="amount" placeholder="amount"/>
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>

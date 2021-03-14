@@ -60,11 +60,54 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.hamcrest</groupId>
+                    <artifactId>hamcrest-core</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
-<!--
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.9.1</version>
+                <configuration>
+                    <nodeVersion>v14.15.4</nodeVersion>
+                    <npmVersion>6.14.4</npmVersion>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>Install Node.js and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+
+            <!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -87,7 +130,8 @@
             </plugin>
 -->
 
-            <plugin>
+
+            <!--<plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.9.1</version>
@@ -104,7 +148,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                     </execution>
-                    <!--<execution>
+                    <execution>
                         <id>npm run-script build</id>
                         <goals>
                             <goal>npm</goal>
@@ -126,18 +170,18 @@
                         </configuration>
                     </execution>-->
 
-               <!--     <execution>
-                        <id>npm run-script build</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                            <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
-                            <arguments>run-script</arguments>
-                            <arguments>build</arguments>
-                        </configuration>
-                    </execution>
--->
+                    <!--     <execution>
+                             <id>npm run-script build</id>
+                             <goals>
+                                 <goal>npm</goal>
+                             </goals>
+                             <configuration>
+                                 <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
+                                 <arguments>run-script</arguments>
+                                 <arguments>build</arguments>
+                             </configuration>
+                         </execution>
+     -->
                     <!--<execution>
                         <id>ng build</id>
                         <goals>
@@ -150,102 +194,9 @@
                                 <argument>build</argument>
                             </arguments>
                         </configuration>
-                    </execution>-->
-                </executions>
-            </plugin>
-
-            <!--<plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.9.1</version>
-                <executions>
-                    <execution>
-                        <id>install-node-and-npm</id>
-                        <goals>
-                            <goal>install-node-and-npm</goal>
-                        </goals>
-                        <configuration>
-                            <nodeVersion>v4.4.3</nodeVersion>
-                            <npmVersion>3.8.3</npmVersion>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>run-npm-install</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <executable>npm</executable>
-                            <arguments>
-                                <argument>install</argument>
-                            </arguments>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>ng build</id>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>exec</goal>
-                        </goals>
-                        <configuration>
-                            <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
-                            <executable>ng</executable>
-                            <arguments>
-                                <argument>build</argument>
-                            </arguments>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>-->
-
-            <!--            <plugin>
-                            <groupId>org.codehaus.mojo</groupId>
-                            <artifactId>exec-maven-plugin</artifactId>
-                            <version>1.6.0</version>
-                            <executions>
-                                <execution>
-                                    <phase>validate</phase>
-                                    <goals>
-                                        <goal>exec</goal>
-                                    </goals>
-                                </execution>
-                                <execution>
-                                    <id>npm install</id>
-                                    <phase>generate-sources</phase>
-                                    <goals>
-                                        <goal>exec</goal>
-                                    </goals>
-                                    <configuration>
-                                        <executable>npm</executable>
-                                        <arguments>
-                                            <argument>install</argument>
-                                        </arguments>
-                                    </configuration>
-                                </execution>
-                            </executions>
-                            <configuration>
-                                <executable>npm</executable>
-                                <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
-                                <arguments>
-                                    <argument>run</argument>
-                                    <argument>build</argument>
-                                </arguments>
-                            </configuration>
-                        </plugin>-->
-
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
         </plugins>
     </build>
 
