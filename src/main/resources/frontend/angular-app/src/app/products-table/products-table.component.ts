@@ -15,7 +15,7 @@ export class ProductsTableComponent implements OnInit {
 
   constructor(private http: HttpClient,
               private httpService: HttpService,
-  ) {}
+  ){}
 
   displayedColumns: string[] =
     ['productID', 'productName', 'productType', 'productPrice', 'amount', 'productionDate', 'actions'];

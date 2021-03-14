@@ -18,7 +18,7 @@ import java.util.UUID;
 @RequestMapping("/api/products/")
 @RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
-public class RestController {
+public class ProductRestController {
     private final ProductServiceImpl productService;
 
     @GetMapping("/get/all")
@@ -27,8 +27,8 @@ public class RestController {
         return productService.getAllProducts();
     }
 
-    @GetMapping("/get")
-    public ResponseEntity<ProductDto> getProduct(@RequestBody UUID productId) {
+    @GetMapping("/get/{productId}")
+    public ResponseEntity<ProductDto> getProduct(@PathVariable UUID productId) {
         log.info("getProduct");
         return productService.getProduct(productId);
     }

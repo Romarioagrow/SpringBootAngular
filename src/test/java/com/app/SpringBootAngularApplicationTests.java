@@ -1,6 +1,6 @@
 package com.app;
 
-import com.app.controllers.RestController;
+import com.app.controllers.ProductRestController;
 import com.app.domain.dto.ProductDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 class SpringBootAngularApplicationTests {
 
     @Autowired
-    private RestController restController;
+    private ProductRestController restController;
 
     @Test
     void createNewProductNull() {
@@ -52,14 +52,5 @@ class SpringBootAngularApplicationTests {
         HttpStatus httpStatusDelete = responseEntity.getStatusCode();
         assertThat(httpStatusDelete.is2xxSuccessful()).isTrue();
     }
-
-
-      /*@Test
-    void createNewProductTest() {
-        ProductDto newProduct = ProductDto.createRandomDto();
-
-        ResponseEntity<ProductDto> createdProduct = restController.createNewProduct(newProduct);
-        assertThat(createdProduct.getBody()).isNotNull();
-    }*/
 
 }
