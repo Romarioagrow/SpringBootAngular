@@ -17,6 +17,7 @@ import {MatCardModule} from "@angular/material/card";
 import { ProductsTableComponent } from './products-table/products-table.component';
 import { MatIconModule } from '@angular/material/icon';
 import {HttpService} from "./http-service";
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {HttpService} from "./http-service";
     FlexLayoutModule,
     MatCardModule,
     MatIconModule,
-    HttpService
+    HttpService,
+    MatToolbarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

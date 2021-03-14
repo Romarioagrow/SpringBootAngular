@@ -13,8 +13,8 @@ export class ProductInputFormComponent implements OnInit {
   @ViewChild(ProductsTableComponent) productTableComponent: ProductsTableComponent;
 
   product: Product;
-
   edited = false;
+  inputHeaderName = 'Add New Product';
 
   constructor(private http: HttpClient, private httpService: HttpService) {
     this.product = new Product();
@@ -54,6 +54,7 @@ export class ProductInputFormComponent implements OnInit {
     this.productTableComponent.addEditedProductToTable(this.product);
     this.product = new Product();
     this.edited = false;
+    this.inputHeaderName = 'Add New Product';
   }
 
   addNewProductToTable(response: Product): void {
@@ -66,11 +67,14 @@ export class ProductInputFormComponent implements OnInit {
     console.log('editedProduct', editedProduct);
     this.product = Product.initNewProduct(editedProduct);
     this.edited = true;
+    this.inputHeaderName = 'Edit Product';
     console.log('this.product', this.product);
   }
 
   cancelEdition(): void {
     this.product = new Product();
     this.edited = false;
+    this.inputHeaderName = 'Add New Product';
+
   }
 }

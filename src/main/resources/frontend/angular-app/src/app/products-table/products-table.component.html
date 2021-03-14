@@ -8,7 +8,7 @@
   <!-- ProductName Column -->
   <ng-container matColumnDef="productName">
     <th mat-header-cell *matHeaderCellDef> ProductName </th>
-    <td mat-cell *matCellDef="let element">
+    <td mat-cell *matCellDef="let element" >
       <button nbButton outline status="info">{{element.name}}</button>
     </td>
   </ng-container>
@@ -26,17 +26,17 @@
   </ng-container>
 
   <ng-container matColumnDef="amount">
-    <th mat-header-cell *matHeaderCellDef> amount </th>
+    <th mat-header-cell *matHeaderCellDef> Amount </th>
     <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
   </ng-container>
 
   <ng-container matColumnDef="productionDate">
-    <th mat-header-cell *matHeaderCellDef> productionDate </th>
+    <th mat-header-cell *matHeaderCellDef> ProductionDate </th>
     <td mat-cell *matCellDef="let element"> {{element.productionDate}} </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef> actions </th>
+    <th mat-header-cell *matHeaderCellDef> Actions </th>
     <td mat-cell *matCellDef="let product">
 
       <button (click)="editProduct(product)" mat-icon-button aria-label="Edit">

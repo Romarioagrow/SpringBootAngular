@@ -10,7 +10,6 @@ export class ProductsComponent implements OnInit {
   constructor(){}
 
   ngOnInit(): void {
-/*    console.log(window.location);
-    console.log(window.location.pathname);*/
+
   }
 }

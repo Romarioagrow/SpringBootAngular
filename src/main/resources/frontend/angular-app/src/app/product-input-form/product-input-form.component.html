@@ -1,11 +1,11 @@
 
-<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+<div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center" style="padding-top: 1%">
   <div fxFlex="25%">
-    <ng-form >
+    <ng-form>
       <mat-card>
-        <mat-card-title>
-          Add New Product
-        </mat-card-title>
+        <mat-card-subtitle>
+          <span>{{inputHeaderName}}</span>
+        </mat-card-subtitle>
         <mat-card-content>
           <mat-form-field appearance="fill">
             <input matInput [(ngModel)]="product.name" name="name" placeholder="name"/>
@@ -27,8 +27,15 @@
           </mat-form-field>
         </mat-card-content>
         <mat-card-actions>
-          <button mat-button color="primary" (click)="saveNewProduct()">Save</button>
-          <button mat-button color="error" *ngIf="edited" (click)="cancelEdition()">Cancel</button>
+
+          <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+            <div fxFlex="50%">
+              <button mat-raised-button color="primary" (click)="saveNewProduct()">Save</button>
+            </div>
+            <div fxFlex="50%">
+              <button mat-raised-button color="error" *ngIf="edited" (click)="cancelEdition()">Cancel</button>
+            </div>
+          </div>
         </mat-card-actions>
       </mat-card>
     </ng-form>
