@@ -64,6 +64,26 @@
 
     <build>
         <plugins>
+            <!--<plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <executable>ng</executable>
+                    <workingDirectory>src/main/resources/frontend/angular-app</workingDirectory>
+                    <arguments>
+                        <argument>build</argument>
+                    </arguments>
+                </configuration>
+            </plugin>-->
 
             <plugin>
                 <groupId>com.github.eirslett</groupId>
@@ -82,7 +102,17 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                     </execution>
-
+                    <!--<execution>
+                        <id>npm run-script build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
+                            <arguments>run-script</arguments>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>-->
                     <!--<execution>
                         <id>npm install</id>
                         <goals>

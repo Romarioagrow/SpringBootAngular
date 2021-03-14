@@ -370,10 +370,10 @@ __webpack_require__.r(__webpack_exports__);
 class HttpService {
     constructor(http) {
         this.http = http;
-        this.URL_GET_ALL_PRODUCT = 'http://localhost:9000/api/products/get/all/';
-        this.URL_CREATE_PRODUCT = 'http://localhost:9000/api/products/create/';
-        this.URL_EDIT_PRODUCT = 'http://localhost:9000/api/products/edit';
-        this.URL_DELETE_PRODUCT = 'http://localhost:9000/api/products/delete/';
+        this.URL_GET_ALL_PRODUCT = 'api/products/get/all/';
+        this.URL_CREATE_PRODUCT = 'api/products/create/';
+        this.URL_EDIT_PRODUCT = 'api/products/edit';
+        this.URL_DELETE_PRODUCT = 'api/products/delete/';
     }
     getAllProducts() {
         return this.http.get(this.URL_GET_ALL_PRODUCT);

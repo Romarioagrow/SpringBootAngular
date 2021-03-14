@@ -8,13 +8,13 @@ import {Observable} from "rxjs";
 export class HttpService {
   constructor(private http: HttpClient) { }
 
-  readonly URL_GET_ALL_PRODUCT = 'http://localhost:9000/api/products/get/all/';
+  readonly URL_GET_ALL_PRODUCT = 'api/products/get/all/';
 
-  readonly URL_CREATE_PRODUCT = 'http://localhost:9000/api/products/create/';
+  readonly URL_CREATE_PRODUCT = 'api/products/create/';
 
-  readonly URL_EDIT_PRODUCT = 'http://localhost:9000/api/products/edit';
+  readonly URL_EDIT_PRODUCT = 'api/products/edit';
 
-  readonly URL_DELETE_PRODUCT = 'http://localhost:9000/api/products/delete/';
+  readonly URL_DELETE_PRODUCT = 'api/products/delete/';
 
   public getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(this.URL_GET_ALL_PRODUCT);
