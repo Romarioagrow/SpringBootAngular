@@ -94,7 +94,7 @@
                         </configuration>
                     </execution>-->
 
-                    <execution>
+               <!--     <execution>
                         <id>npm run-script build</id>
                         <goals>
                             <goal>npm</goal>
@@ -105,7 +105,7 @@
                             <arguments>build</arguments>
                         </configuration>
                     </execution>
-
+-->
                     <!--<execution>
                         <id>ng build</id>
                         <goals>
