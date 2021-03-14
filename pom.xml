@@ -64,6 +64,7 @@
 
     <build>
         <plugins>
+<!--
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
@@ -84,8 +85,9 @@
                     </arguments>
                 </configuration>
             </plugin>
+-->
 
-           <!-- <plugin>
+            <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>1.9.1</version>
@@ -102,7 +104,7 @@
                             <goal>install-node-and-npm</goal>
                         </goals>
                     </execution>
-                    &lt;!&ndash;<execution>
+                    <!--<execution>
                         <id>npm run-script build</id>
                         <goals>
                             <goal>npm</goal>
@@ -112,8 +114,8 @@
                             <arguments>run-script</arguments>
                             <arguments>build</arguments>
                         </configuration>
-                    </execution>&ndash;&gt;
-                    &lt;!&ndash;<execution>
+                    </execution>-->
+                    <!--<execution>
                         <id>npm install</id>
                         <goals>
                             <goal>npm</goal>
@@ -122,9 +124,9 @@
                             <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
                             <arguments>install</arguments>
                         </configuration>
-                    </execution>&ndash;&gt;
+                    </execution>-->
 
-               &lt;!&ndash;     <execution>
+               <!--     <execution>
                         <id>npm run-script build</id>
                         <goals>
                             <goal>npm</goal>
@@ -135,8 +137,8 @@
                             <arguments>build</arguments>
                         </configuration>
                     </execution>
-&ndash;&gt;
-                    &lt;!&ndash;<execution>
+-->
+                    <!--<execution>
                         <id>ng build</id>
                         <goals>
                             <goal>ng</goal>
@@ -148,10 +150,9 @@
                                 <argument>build</argument>
                             </arguments>
                         </configuration>
-                    </execution>&ndash;&gt;
+                    </execution>-->
                 </executions>
             </plugin>
--->
 
             <!--<plugin>
                 <groupId>com.github.eirslett</groupId>
