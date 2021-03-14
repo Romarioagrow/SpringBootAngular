@@ -82,7 +82,7 @@ public class ProductServiceImpl implements ProductServiceApi {
 
     @Override
     @Transactional
-    public ResponseEntity<?> deleteProduct(UUID productID) {
+    public ResponseEntity<HttpStatus> deleteProduct(UUID productID) {
         /*
          * transaction.UnexpectedRollbackException
          * */

@@ -46,7 +46,7 @@ public class RestController {
     }
 
     @DeleteMapping("/delete/{productId}")
-    public ResponseEntity<?> deleteProduct(@PathVariable UUID productId) {
+    public ResponseEntity<HttpStatus> deleteProduct(@PathVariable UUID productId) {
         log.info("deleteProduct");
         return productService.deleteProduct(productId);
     }
