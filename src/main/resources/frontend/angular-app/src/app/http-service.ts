@@ -16,20 +16,36 @@ export class HttpService {
 
   readonly URL_DELETE_PRODUCT = 'api/products/delete/';
 
+  readonly DEV_SERVER_HOST_NAME = 'http://localhost:9000/';
+
+  readonly PROD_SERVER_HOST_NAME = 'https://spring-boot-angular-cli.herokuapp.com/';
+
   public getAllProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.URL_GET_ALL_PRODUCT);
+    return this.http.get<Product[]>(this.resolveDomainUrl(this.URL_GET_ALL_PRODUCT));
   }
 
   public createNewProduct(product: Product): Observable<Product> {
-    return this.http.post<Product>(this.URL_CREATE_PRODUCT, product);
+    return this.http.post<Product>(this.resolveDomainUrl(this.URL_CREATE_PRODUCT), product);
   }
 
   public editProduct(product: Product): Observable<any> {
-    return this.http.put(this.URL_EDIT_PRODUCT, product);
+    return this.http.put(this.resolveDomainUrl(this.URL_EDIT_PRODUCT), product);
   }
 
   public deleteProduct(productId: string): Observable<any> {
-    const deleteProductUrl = this.URL_DELETE_PRODUCT + productId;
+    const deleteProductUrl = this.resolveDomainUrl(this.URL_DELETE_PRODUCT) + productId;
     return this.http.delete<number>(deleteProductUrl);
+  }
+
+  private resolveDomainUrl(url: string): string {
+    const currentDomain = window.location.toString();
+
+    if (currentDomain === this.PROD_SERVER_HOST_NAME) {
+      return this.PROD_SERVER_HOST_NAME + url;
+    }
+    else {
+      return this.DEV_SERVER_HOST_NAME + url;
+
+    }
   }
 }
