@@ -83,7 +83,7 @@
                         </goals>
                     </execution>
 
-                    <execution>
+                    <!--<execution>
                         <id>npm install</id>
                         <goals>
                             <goal>npm</goal>
@@ -92,7 +92,7 @@
                             <workingDirectory>${basedir}/src/main/resources/frontend/angular-app</workingDirectory>
                             <arguments>install</arguments>
                         </configuration>
-                    </execution>
+                    </execution>-->
 
                     <execution>
                         <id>npm run-script build</id>
